@@ -1,0 +1,720 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>PAV1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="695f950c-f71d-4d7b-9221-1e746f10ee50" class="page sans"><header><h1 class="page-title">PAV1</h1></header><div class="page-body"><figure id="3cabb0b6-f7c0-4689-9a08-a085a2906853" class="link-to-page"><a href="https://www.notion.so/SQL-CONNECTION-3cabb0b6f7c046899a08a085a2906853">SQL CONNECTION</a></figure><figure id="90d61a3f-1135-4aac-a878-98f633c08f4c" class="link-to-page"><a href="https://www.notion.so/ENTIDADES-EJEMPLO-90d61a3f11354aaca87898f633c08f4c">ENTIDADES/ EJEMPLO </a></figure><figure id="74f620d0-cac9-435c-aaa7-96f0384fb03f" class="link-to-page"><a href="https://www.notion.so/ENTIDADES-VENTA-transaccion-74f620d0cac9435caaa796f0384fb03f">ENTIDADES / VENTA (transaccion)</a></figure><p id="bf3dd84d-92bc-4508-8525-e11a2ffec915" class="">
+</p><hr id="e73c84e6-cd18-47e0-9de2-dd854c1afb34"/><p id="63c242e8-dbd1-49a4-99d0-65f9cfb0171e" class="">
+</p><p id="cdc10ea5-4632-4737-95f1-2b68f05822b0" class=""><strong><span style="border-bottom:0.05em solid">AGREGAR CADENA DE CONEXION DE BD</span></strong></p><figure id="e770e760-567c-425e-8d7f-ee15d7347d05" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled.png"><img style="width:733px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled.png"/></a></figure><p id="29b5a1a3-e5ed-404a-85ff-885dec815726" class="">1- agregamos la BD en exp de servidores/ copiamos la cadena en propiedades del servidor bd</p><p id="62f9c880-8cb2-4064-a3be-6ef5a254fa27" class="">2-vamos a appconfig y creamos un app settings/ add / key =”CadenaBD” value = “(insertar cadena)”</p><p id="282ff075-639c-4f6f-b82c-709c474a2829" class="">3-SI LA CADENA ES CON USER Y PASS / SE DEBEN AGREGAR MANUALMENTE porq la contraseña no se ve.</p><hr id="e8533f85-8af9-4ed3-be90-2659d92772c1"/><p id="5c2fe212-170e-48fa-b379-080b86cad385" class="">
+</p><h3 id="4fe5ceb0-b0ad-4069-8b91-d71909764f51" class="">clase 3</h3><p id="fa22706f-6c22-4684-9548-80309411ac97" class=""><span style="border-bottom:0.05em solid">Agenda</span></p><ul id="689d8f4f-2df2-48cc-82dd-1e4a8dbf7aef" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid">crear nuevo form</span></li></ul><ul id="0c3e7db2-84c0-41f3-b8c5-0179681a6a36" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid">rudimientos de un ABM</span></li></ul><ul id="bf28a62f-6280-4d71-bd6a-9031c6dfc6d3" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid">nuevos componentes como maskedtextbox. radiobutton combobox checkbox datagrindview.</span></li></ul><p id="fceb8a34-9f01-4cbc-b773-9b3a5af789e1" class="">
+</p><p id="c3f4ca11-9f51-4a39-a4fd-da9e74155f40" class="">REALIZAR LA CONEXION A BD Y CONSULTAS</p><figure id="24e75f51-ab4a-45d3-a4ca-0a0127d03200" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%201.png"><img style="width:528px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%201.png"/></a></figure><p id="d6622816-2a13-4ad3-83b6-bd5cc468dab3" class="">en este caso nos falta la libreria system.configuration…</p><p id="fa59f1c8-bedc-4eb6-8675-e876df5ace10" class="">1- VAMOS A REFERENCIAS/ agregar referencias</p><figure id="74bf17b7-b3c1-4221-bb2b-0948c204490e" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%202.png"><img style="width:335px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%202.png"/></a></figure><figure id="ea6fa2de-241f-4049-bb4a-d5c3392c802b" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%203.png"><img style="width:525px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%203.png"/></a></figure><p id="0a46102a-4aa0-4512-ab13-a6842259536a" class="">
+</p><figure id="c244c9ed-4ba4-4d19-a963-fa700388b160" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%204.png"><img style="width:593px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%204.png"/></a></figure><hr id="9a9d5637-909c-4cac-b765-950f50339e7c"/><p id="5087ec3e-8fc3-4373-9e8d-bb2245d57296" class="">Consulta SQL para validar usuario(select *….)</p><figure id="e06fde4d-45db-44af-94dd-6b79d5d7aa45" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%205.png"><img style="width:656px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%205.png"/></a></figure><figure id="298dc5dc-97f7-4585-b376-3e542cef8e49" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%206.png"><img style="width:567px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%206.png"/></a></figure><figure id="6dff4020-1b7d-4a1a-8d20-a07a08150c34" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%207.png"><img style="width:390px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%207.png"/></a></figure><figure id="16bc50e4-9546-4b51-bab4-b396e6f8a37e" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%208.png"><img style="width:514px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%208.png"/></a></figure><hr id="ec727bc9-ca54-43ea-8715-ab30d9b0479d"/><p id="d2c240df-a2a5-4236-a7e9-da0a6fc25b2a" class="">FINALIZAR CONEXION BD</p><p id="204701bd-5598-4902-b530-3fecd00da800" class="">hay que poner por fuera del try al </p><p id="c1952550-ed48-47f7-8fd7-a121d09ff983" class=""><span style="border-bottom:0.05em solid">sqlconnection cn = new sqlconnection(cadenaconexion) </span></p><p id="a5530f20-8935-4a3d-bf5b-eea5db0d8008" class="">y tambien al <span style="border-bottom:0.05em solid">string cadenaConexion = systemas……. [”cadenaBD”]</span></p><figure id="a6681006-eaca-4aa8-b48e-f71889a173a7" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%209.png"><img style="width:604px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%209.png"/></a></figure><p id="182bc274-68ad-48e3-b3a5-b145f19a5482" class="">Y AL FINAL TERMINAMOS CON</p><figure id="c08faace-414f-4a02-9328-9822b03563e2" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2010.png"><img style="width:240px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2010.png"/></a></figure><hr id="c6c7428e-7d67-4321-93c4-ae84982ff187"/><p id="60c6faab-4744-41e9-b818-2cfe1e234095" class="">PASAR PARAMETROS A CONSULTA SQL </p><p id="d1049e06-e385-4a44-9433-42f567f34b5d" class="">CREAMOS LOS <mark class="highlight-red"><span style="border-bottom:0.05em solid">@PARAMETRO  / EJ @nombreUsu</span></mark></p><figure id="87d74e58-2fc5-4e93-8493-3c0288d1ce49" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2011.png"><img style="width:552px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2011.png"/></a></figure><p id="db4b911c-a1a9-44fa-b3fd-69da463cb54e" class="">LUEGO DEL CMD.CLEAR COLOCAMOS LOS PARAMETROS</p><p id="75ce5e74-bcb1-47ba-a654-57b593f30dd7" class=""><mark class="highlight-red">// PRIMERO EL NOMBRE DEL PARAMETRO Y LUEGO EL VALOR</mark></p><p id="22d5b3d2-3c42-497c-8e69-8af7be2f1ed7" class="">cmd.Parameters.AddWithValue(”@NombreUsu”, nombreDeUsuario)  </p><figure id="622fdbd9-9792-41a0-9c36-ce77cb0f8852" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2012.png"><img style="width:511px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2012.png"/></a></figure><hr id="352dd289-bad9-4188-b141-45dbf104865a"/><p id="4f094a9e-82e4-4dbb-bd76-4efa869e63f2" class="">AL CREAR UN DATAGRID DESMARCAR</p><figure id="13ace7cc-0041-400a-ac40-d064438d73d6" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2013.png"><img style="width:393px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2013.png"/></a></figure><hr id="7ffbc4e6-7c57-49ea-b278-9ab74cf58013"/><p id="8f740c96-78db-4ee8-8cc4-03f574d3e80b" class="">Y EDITAR COLUMNAS LUEGO </p><p id="d651f2c2-8dda-4e6a-b712-86e7e37dd8a3" class="">para hacer coincidir el nombre del encabezado de la datagrid con las tablas de la bd</p><p id="770a2c70-194b-41fa-b205-69cfa843c56a" class="">/Datos / dataproperties == nombre de la columna de la BD</p><figure id="634a5ab9-9001-4609-bab3-c1bfe97ed4ba" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2014.png"><img style="width:563px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2014.png"/></a></figure><hr id="132b1b6a-6882-4f72-9255-86de451a9795"/><p id="2de53403-17ab-46af-a0ea-e56dc6df68a5" class="">insert into (ej insertar alta de usuario)</p><figure id="f8858550-c4bd-4a57-b799-e50bbbc4fdc6" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2015.png"><img style="width:446px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2015.png"/></a></figure><p id="fb85c6b2-e47c-4cfd-9dee-fb54732f5de2" class="">(cuando hago un insert sin esperar ninguna respuesta) -&gt;</p><p id="2d472002-ed5f-4239-ae0c-e8f6b6248491" class="">se utiliza el cmd.executenonquery()</p><p id="f02d37ce-aff1-456b-9502-0f4740dc2544" class="">resultado = true</p><hr id="d500e9c2-0323-445f-839f-25036748e214"/><p id="28126cf6-cf61-4eaa-86e0-db250ac69957" class="">asignar clave foranea (un una key que apunta a otra tabla ) seleccionamos la columna y apretamos en relationship</p><figure id="50d3e59f-794a-4ec0-8b91-134c80668d20" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2016.png"><img style="width:384px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2016.png"/></a></figure><figure id="7c9f27d3-0469-40b6-8f19-73d2e75bcc07" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2017.png"><img style="width:418px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2017.png"/></a></figure><hr id="fcc51400-0f33-4e95-b552-da7020e78cd0"/><p id="4cb94d9c-d521-42ad-951b-b909489d13a8" class="">Cargar un combo desde bd</p><figure id="6c28d270-e635-4cb1-94be-0c4e4af5b20f" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2018.png"><img style="width:408px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2018.png"/></a></figure><p id="c916052c-902a-4d2a-beae-2c060287e99f" class="">para que quede deseleccionado es  selectedindex = -1</p><figure id="6a253ed7-6a75-4555-9db7-9de65f3e6809" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2019.png"><img style="width:190px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2019.png"/></a></figure><hr id="c7499e39-34e2-4d3e-9397-a2effc62d299"/><p id="206686e2-af5a-4396-beba-a6da5ec96203" class="">Cargar Fecha </p><figure id="ce5b2a5d-293b-44dd-a810-6b2c22cf9826" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2020.png"><img style="width:287px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2020.png"/></a></figure><p id="b3136229-bff7-46e6-adf8-b59c360f8eac" class="">
+</p><hr id="38597fd2-cc55-458c-b721-5cd0f51b7b73"/><p id="6a37d430-1957-4c83-a4cc-977162401ce3" class="">cuando creo un AccesoADatos no olvidar poner en public</p><figure id="c4c7d489-d306-4e61-bff4-08970ea704f9" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2021.png"><img style="width:251px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2021.png"/></a></figure><hr id="dc548578-f482-4d07-96de-0d3d83dcc8e8"/><p id="b14053b4-5aff-4cda-8694-b1a89cc39ff9" class="">en accesoADatos si hacemos static un metodo de esa clase nos permite usarlo en el form sin tener que definirlo</p><ul id="9d402e63-10ea-4aae-b1f7-7924c146f424" class="bulleted-list"><li style="list-style-type:disc">En accesoADatos</li></ul><figure id="2546c9f8-6b37-4c00-8df9-8cfaf33da540" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2022.png"><img style="width:480px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2022.png"/></a></figure><p id="668140b7-629c-4c9b-a0b6-03efbd300a87" class="">
+</p><ul id="b5974c0b-9d09-4151-bd7c-b6db60076a29" class="bulleted-list"><li style="list-style-type:disc">En btnclick ingresar user</li></ul><figure id="2b21df80-f0b1-4e39-92a8-8d703c0e4035" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2023.png"><img style="width:432px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2023.png"/></a></figure><hr id="e3066878-5963-4f34-8671-52a6f881b4ed"/><p id="b59cff13-e7d6-4a17-b7f6-30d15a2ac729" class="">Obtener ultimo Id de un curso por ej (o ultima venta )</p><figure id="2b004350-74b3-42c0-9803-f4f478f64917" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2024.png"><img style="width:528px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2024.png"/></a></figure><figure id="7d039d5e-b828-4ca1-a0e7-8ab934d93ba9" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2025.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2025.png"/></a></figure><hr id="d4a98e17-1aa2-499f-8495-cddbf025a0aa"/><p id="606c4b1a-6b27-466d-a436-701ab9606daf" class="">USAR (INT).PARSE</p><pre id="0e79a877-7aaf-447f-ac42-10aeae36b5d9" class="code"><code>tieneAtraso = true;
+atraso = int.Parse(txtAtraso.Text);
+
+tieneFechaEntrega = true;
+fechaEntrega = DateTime.Parse(txtFechaEntrega.Text);</code></pre><figure id="cfe0a0d3-f57f-4e33-a137-1c866c728a1f" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2026.png"><img style="width:732px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2026.png"/></a></figure><hr id="538c4816-0738-4caa-9df0-e528ab601981"/><p id="c1094209-5b21-48a3-8585-556b36edc78c" class="">Se puede recuperar un txt que sea numero con int.Parse para transformarlo en int y buscar (en este caso el metodo de busqueda es INT pero desde el textbox se recupera en string y se transforma con int.parte dentro del parametro) </p><figure id="c8ba4ab6-d967-43f7-aa6b-f1a3e67aeb33" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2027.png"><img style="width:709px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2027.png"/></a></figure><p id="b39d5921-6df5-49fb-b49f-1678f775afdb" class="">con el if row.count &gt;0 se checkea si trajo resultados. si esta vacia no trajo.</p><figure id="a29032ed-40a0-44f9-a85d-773732f11881" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2028.png"><img style="width:675px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2028.png"/></a></figure><p id="f65d1108-c7ec-4333-9110-ad2328811272" class="">si trajo resultados es una fila con 3 columnas [0][2] donde la fila 1(segunda) es el nombre de la carrera y la extraemos al textbox como</p><p id="53459220-24fe-403a-95ed-bb990b270381" class="">txtcarreara.text = tablaresultado.rows.[0][1].toString();</p><figure id="22bf540a-dd72-4e59-84bd-17de4a7d233e" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2029.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2029.png"/></a></figure><hr id="feed9358-d50a-4c8e-a935-ca4ce09ea6c8"/><p id="01b27c6b-42be-4288-8c5e-328e94314def" class="">Funcion Trim() sirve para cortar espacios en blanco </p><figure id="78efa793-4fa0-48e4-a393-79ab8bf6a5da" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2030.png"><img style="width:652px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2030.png"/></a></figure><hr id="64abdf58-e43d-49c1-816d-d8983eb598a6"/><p id="382592b8-64e2-4e3d-bf2a-54b8a8d3580e" class="">Metodo para Buscar Por Id en el datagridview Y agregarlos a una lista </p><figure id="091bf2ea-8c75-4e00-887a-8ccb5fbab696" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2031.png"><img style="width:734px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2031.png"/></a></figure><p id="625204c7-b4e4-4b15-b8f3-4e3fc58d8d89" class="">final de la transaccion (agregar alumnos al curso por ciclo)</p><figure id="7abfd96a-60fe-4e7a-9ff0-113f0d8f81a4" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2032.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2032.png"/></a></figure><p id="b76879c3-0a51-4158-ac5d-272e57e55670" class="">curso dado de alta</p><figure id="c6768ced-b1d9-4477-b251-ca019f9fdd57" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2033.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2033.png"/></a></figure><p id="65e17782-d939-4c8c-8e57-de0fc23ac54f" class="">#HABIA UN CLEAR EN LUGAR ERRONEO</p><figure id="aab4ac34-d4ea-4f13-aaab-3ec6d7f85efa" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2034.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2034.png"/></a></figure><p id="61fc7d56-b784-4957-b4aa-2fb4c33a9a7a" class="">y agregar el rollback</p><figure id="9f151474-7a32-49b5-9055-bdabcc031db0" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2035.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2035.png"/></a></figure><p id="6fcc7acc-91c1-4340-b114-e8a8ca220e29" class="">SI LA TRANSACCION FUNCIONA SE VA AL BOTON GUARDAR(falta una parte de parametros)</p><figure id="9adccedb-1f7b-4bd5-bd25-5d61cbb4673a" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2036.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2036.png"/></a></figure><figure id="fd8f0834-bba2-40ff-9f38-dfebb632324b" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2037.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2037.png"/></a></figure><p id="b0ae0a65-4b03-493c-94be-530c29d0faf5" class="">IF FINAL </p><figure id="9f7f53c8-32fa-4501-9b79-d91fa0b127b4" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2038.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2038.png"/></a></figure><p id="6dbc6581-8637-4374-9952-d085aca10239" class="">ERROR FINAL//  faltaba objtrasnsacction = beginertransaction(”altacurso”)</p><figure id="0d5ca794-dd47-48ce-812d-87ba839760d8" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2039.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2039.png"/></a></figure><figure id="a36e2f9b-911b-4ba2-bf4c-afce798479f6" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2040.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2040.png"/></a></figure><p id="e27fc126-a9ef-43cc-a1bc-661600b6337e" class="">clears explicaciones por q habia una consulta anterior de parametros y consulta</p><figure id="aecd2577-6eff-4fb7-a8bd-f4ff2cfcf33f" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2041.png"><img style="width:1360px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2041.png"/></a></figure><p id="0b0574f0-4a5c-4dea-a416-b4ad80f6952e" class="">estoy queriendo borrar un evento del conbehind el cual es referenciado desde la vista de diseño y al borrarlo desde ahi si lo quiero referenciar desde la vista de diseño y no se lo encuentra se va a generar un error.</p><p id="fd9a5c19-9671-4fdd-a4bc-c5f7735fce69" class="">
+</p><p id="fa31e833-a8b8-4dff-be0a-7146ca47fa2d" class="">forma correcta de borrar un evento</p><p id="9c5fd942-8e8e-4718-8abb-095336925d91" class="">en la vista de diseño vamos a sus propiedades, seleccionamos el rayito de eventos y lo borramos y guardamos los cambios y ahora si vamos al cobehind a borrar la seccion de codigo del evento.</p><hr id="9110c7b8-3803-484a-b67c-82750be792b3"/><p id="e4656815-c401-4598-9881-8a4ff6f95f5f" class="">Si trabajamos los radioButtons dentro de un panel se considera solo uno de los botones como selecccion posible, nos ahorramos realizar validaciones. (se pueden quitar los bordes del panel para que se vea mas estetico y el funcionamiento es el mismo).</p><hr id="41a6d526-0d6d-400c-b9d5-14a6cabec0e2"/><figure id="4e834c65-e832-4586-8d05-65721d038ee4" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2042.png"><img style="width:201px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2042.png"/></a></figure><p id="03e87e9a-0e48-469b-8679-749f8a24e778" class="">
+</p><p id="34b19dc7-98da-4f48-bc5a-fc1bbd82d1bc" class="">surge un problema donde la seleccion del combobox se puede borrar y  no es correcto el cual se corrige desde las propiedades, dropdown style</p><hr id="2e4c2d6f-27cb-49de-a6d6-2b4a5f1cb0f7"/><h1 id="bfd381d0-1674-4f84-a05f-e80260327bed" class="">clase2</h1><figure id="385058ea-2475-4146-805b-9db20b81edf8" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2043.png"><img style="width:372px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2043.png"/></a></figure><pre id="5503cc8c-6983-459a-9786-03a1fd05a139" class="code"><code>namespace proyectoBase.Entidades
+{
+    public class Usuario
+    {
+        private string NombreUsu;
+        private string password;
+				// SOBRECARGA DE UN METODO CONSTRUCTOR 
+				// La funcion constructura usuario asigna el primer y segundo parametro al usuario 
+				// y contraseña/ Puede ser de forma simple o aplicando (this.)
+        public Usuario(string nombreUsu, string password)
+        {
+            this.NombreUsu = nombreUsu;
+            this.password = password;
+						// NombreUsu = nombreUsu;
+            // password = password;
+        }
+			//  SETEAR O OBTENER LOS ATRIBUTOS
+			// 
+        public string NombreDeUsuario
+        {
+            get =&gt; NombreUsu;
+            set =&gt; NombreUsu = value;
+        }
+				public string Password
+        {
+            get =&gt; Pass;
+            set =&gt; Pass = value;
+        }
+    }
+}</code></pre><p id="21340090-c499-495f-80ea-174562abd48a" class="">SI a un label le cambiamos la opcion de visible a false no se mostrara y podemos alterarla hasta mostrarla,</p><p id="aea7cf57-0596-4968-823b-e1ca67fd2ce6" class="">Se agrega junto a la inalizacion del form y se agrega como parametro (<mark class="highlight-orange"><span style="border-bottom:0.05em solid">Usuario</span></mark> <mark class="highlight-gray">Usu)</mark></p><pre id="e448a932-c768-4052-97cc-cfd5ecd3518a" class="code"><code>public PrincipalForm(Usuario Usu)
+        {
+            InitializeComponent();
+            lbBienvenida.Text = (&quot;Bienvenido &quot; + Usu.NombreDeUsuario + &quot;&quot;);
+            lbBienvenida.Visible = true;
+        }</code></pre><p id="94f04824-6c57-40a1-ba4a-caf0c922d35d" class="">PARA AGREGAR ICONOS HAY Q IR  A LA OPCION DE MENU Y SELECCION (IMAGEN ;)</p><h3 id="9b99ce66-bc3b-49dd-abca-ed6e4580eb6d" class=""><mark class="highlight-blue"><a href="https://www.iconfinder.com/">https://www.iconfinder.com/</a></mark><mark class="highlight-blue">  PAGINA DE ICONOS GRATIS</mark></h3><p id="67873588-4766-4709-bf08-6ccc1d0f1e11" class="">
+</p><h1 id="1a2cf86b-8f3f-4367-8621-ebca1071cfee" class="">Clase 3</h1><figure id="e259dd36-2b44-46f1-972a-bf1a40b79497" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2044.png"><img style="width:473px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2044.png"/></a></figure><p id="9ab3dcd2-095a-429f-9f2f-07a7119ae423" class="">RADIOBUTTONS</p><p id="46d5030f-7353-487b-98b2-eedaa00f2830" class="">SI TRABAJAMOS CON UN PANEL Y DENTRO RADIOBUTTONS SOLO SE PRODA SELECCIONAR UNO </p><p id="23914337-896d-4750-abb9-cdc7945cec12" class="">LO QUE NOS AHORRA TRABAJO DE VALIDACION</p><figure id="c7b01c0b-24c5-411e-9591-d0d2d381a246" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2045.png"><img style="width:495px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2045.png"/></a></figure><p id="59477772-6d65-4a1f-9d1f-704963cb90c7" class="">COMBOBOXS</p><p id="35e6a255-f7bd-4e64-ac05-3347485be3e0" class="">CAMBIAR LA PROPIEDAD DROPDOWN LIST</p><p id="e94455a6-fd9c-4391-862e-a816f557a379" class="">/<span style="border-bottom:0.05em solid"><mark class="highlight-red">/ DE LO CONTRARIO SE PUEDE SOBREESCRIBRIR EL CMB</mark></span></p><figure id="3c85249f-4cb1-4832-bc8c-da8e99c0646b" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2046.png"><img style="width:318px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2046.png"/></a></figure><figure id="7d62d37f-3fef-4ee4-a3ae-985466f7a7ac" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2047.png"><img style="width:373px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2047.png"/></a></figure><p id="9f8c60f3-a17a-466d-a846-c60004e165e7" class="">RECUPERAR UN COMBO BOX</p><pre id="ecef63f2-362b-402b-a147-1bbcdd0d00bd" class="code"><code>string tipoDocumento = cmbTipoDocumento.GetItemText(cmbTipoDocumento.SelectedItem);
+        </code></pre><h1 id="57c4a963-7a98-47ca-bb51-b020ffb6396a" class="">CLASE 4</h1><p id="0a31555a-8005-470f-8274-96be0df1a986" class="">al crear una tabla para olvidarse del id usuario se puede usar el identify especification / is idenfity / YES</p><figure id="981b2e37-dbe7-48ab-bbce-03504fe7b2b0" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2048.png"><img style="width:469px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2048.png"/></a></figure><p id="fe6c62c3-1c71-4f62-bf01-e1bf12e25766" class="">
+</p><h1 id="88be4929-b967-4964-9c15-8a8b077f273e" class="">CONSULTAS SQL</h1><p id="02b1727d-54c9-4c6d-b0fb-afd8e08617ba" class="">SELECT -FROM</p><p id="28aea780-8c9e-4154-9c30-0add91702436" class="">seleccciona las columas…. desde la tabla…..</p><p id="1ac4575f-1a6b-4b2a-a615-455ef7ca1c54" class="">
+</p><figure id="570def4e-20bc-4579-ab67-07d11b7c211c" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2049.png"><img style="width:288px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2049.png"/></a></figure><p id="e29a8de1-18f4-4948-a73b-1635ae5f0a8b" class="">SELECT * recupera todas las columnas de la tabla</p><figure id="9d40d95f-e8b1-4e2c-8c48-4aa2b8359ef6" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2050.png"><img style="width:251px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2050.png"/></a></figure><figure id="e680b894-ae5a-4ef5-80ab-de45020709f8" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2051.png"><img style="width:275px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2051.png"/></a></figure><ul id="b55765c9-6a4f-429f-9673-6a359c367a8e" class="bulleted-list"><li style="list-style-type:disc">cargar fecha y dejarla enable</li></ul><figure id="680ad7af-09de-4601-af32-c8fc15bf9171" class="image"><a href="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2052.png"><img style="width:237px" src="PAV1%20695f950cf71d4d7b92211e746f10ee50/Untitled%2052.png"/></a></figure></div></article></body></html>

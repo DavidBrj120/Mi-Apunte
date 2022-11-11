@@ -1,0 +1,2051 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SQL CONNECTION</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3cabb0b6-f7c0-4689-9a08-a085a2906853" class="page sans"><header><h1 class="page-title">SQL CONNECTION</h1></header><div class="page-body"><pre id="105a938c-6fbb-4b10-8845-282139517dde" class="code"><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+using System.Windows.Forms;
+using PavTpGrupo11.Formularios;
+using PavTpGrupo11.Entidades;
+using System.Text.RegularExpressions;
+
+namespace PavTpGrupo11.AccesoADatos
+{
+   public  class ConexionSQL
+    {
+        static string cadena = System.Configuration.ConfigurationManager.AppSettings[&quot;CadenaBD&quot;];
+        static SqlConnection conexion = new SqlConnection(cadena);
+
+        public int Login( string us, string pass )
+        {
+            int count;
+            conexion.Open();
+            string query = &quot;Select Count(*) FROM Usuario WHERE Nombre = &#x27;&quot;+us+ &quot;&#x27;and Contraseña = &#x27;&quot;+pass+&quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            count = Convert.ToInt32(cmd.ExecuteScalar());
+            conexion.Close();
+            return count;
+        }
+        public DataTable ConsultarUsuarios()
+        {
+            string query = &quot;SELECT * FROM Usuario&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+
+
+        }
+        public Usuario obtenerUsuario(string nom)
+        {
+            Usuario resultado = new Usuario();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Usuario WHERE Nombre = &#x27;&quot; + nom + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.contrasena = reader[&quot;Contraseña&quot;].ToString();
+                resultado.nombre = reader[&quot;Nombre&quot;].ToString();
+
+            }
+            conexion.Close();
+            return resultado;
+        }
+
+        public int InsertarUsuarioU(Usuario us)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into Usuario(Nombre, Contraseña ) values(&#x27;&quot; + us.nombre + &quot;&#x27;, &#x27;&quot; +  us.contrasena + &quot;&#x27;)&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+
+        public int EliminarUsuario(string nom)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM Usuario WHERE Nombre = &#x27;&quot; + nom + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+        public int ModificarUsuario(Usuario us)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE Usuario SET Contraseña = &#x27;&quot; + us.contrasena + &quot;&#x27; WHERE Nombre = &#x27;&quot; + us.nombre + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+        public DataTable ObtenerRepuestos()
+        {
+            string query = &quot;SELECT * FROM REPUESTO&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+
+
+        }
+        public Repuesto ObtenerRepuestos(int cod)
+        {
+            Repuesto resultado = new Repuesto();
+            conexion.Open();
+            string query = &quot;SELECT * FROM REPUESTO WHERE Codigo_Repuesto = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.Codigo = int.Parse(reader[&quot;Codigo_Repuesto&quot;].ToString());
+                resultado.nombre = reader[&quot;Nombre_Repuesto&quot;].ToString();
+            }
+            conexion.Close();
+            return resultado;
+        }
+
+        public int InsertarRepuesto(Repuesto re)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into REPUESTO(Codigo_Repuesto, Nombre_Repuesto ) values(&#x27;&quot; + re.Codigo + &quot;&#x27;, &#x27;&quot; + re.nombre + &quot;&#x27;)&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+
+        public int EliminarRespuesto(int cod)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM REPUESTO WHERE Codigo_Repuesto = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+        public int ModificarRepuesto(Repuesto re)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE REPUESTO SET Nombre_Repuesto = &#x27;&quot; + re.nombre + &quot;&#x27; WHERE Codigo_Repuesto = &#x27;&quot; + re.Codigo + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+
+        public static DataTable ConsultarUsuariosDG()
+        {
+            string query = &quot;SELECT * FROM Empleados&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+
+
+        }
+        public Empleado obtenerEmpleado(int cod)
+        {
+            Empleado resultado = new Empleado();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Empleados WHERE Cod_Empleado = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.CodigoEmpleado = int.Parse(reader[&quot;Cod_Empleado&quot;].ToString());
+                resultado.Nombre = reader[&quot;Nombre&quot;].ToString();
+                resultado.NroTipoDocumento = int.Parse(reader[&quot;Documento&quot;].ToString());
+                resultado.calle = reader[&quot;calle&quot;].ToString();
+                resultado.NroCalle = int.Parse(reader[&quot;nro_calle&quot;].ToString());
+                resultado.telefono = int.Parse(reader[&quot;Telefono&quot;].ToString());
+                resultado.IdBarrio = int.Parse(reader[&quot;id_barrio&quot;].ToString());
+
+            }
+            conexion.Close();
+            return resultado;
+        }
+        public DataTable ConsultarBarriosDG()
+        {
+            string query = &quot;SELECT * FROM Barrios&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+
+
+        }
+        public Barrio ObtenerBarrio(int id)
+        {
+            Barrio resultado = new Barrio();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Barrios WHERE id_barrio = &#x27;&quot; + id + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.Id = int.Parse(reader[&quot;id_barrio&quot;].ToString());
+                resultado.Nombre = reader[&quot;nombre_barrio&quot;].ToString();
+
+            }
+            conexion.Close();
+            return resultado;
+        }
+        public Obra obtenerObra(int cod)
+        {
+            Obra resultado = new Obra();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Obras WHERE codigo_obra = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.Codigo_Obra = int.Parse(reader[&quot;codigo_obra&quot;].ToString());
+                resultado.NombreObra = reader[&quot;nombre_Obra&quot;].ToString();
+                resultado.calle = reader[&quot;calle&quot;].ToString();
+                resultado.NroCalle = int.Parse(reader[&quot;nro_calle&quot;].ToString()); 
+                resultado.IdBarrio = int.Parse(reader[&quot;id_barrio&quot;].ToString());
+
+            }
+            conexion.Close();
+            return resultado;
+        }
+        public Proveedor ObtenerProveedor(int id)
+        {
+            Proveedor resultado = new Proveedor();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Proveedor WHERE Cod_Proveedor = &#x27;&quot; + id + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.cod_proveedor = int.Parse(reader[&quot;Cod_Proveedor&quot;].ToString());
+                resultado.Nombre = reader[&quot;Nombre&quot;].ToString();
+                resultado.telefono = int.Parse(reader[&quot;Telefono&quot;].ToString());
+                resultado.Mail = reader[&quot;Mail&quot;].ToString();
+                resultado.calle = reader[&quot;Calle&quot;].ToString();
+                resultado.NroCasa = int.Parse(reader[&quot;nro_Calle&quot;].ToString());
+                resultado.IdBarrio = int.Parse(reader[&quot;id_barrio&quot;].ToString());
+
+
+
+
+
+            }
+            conexion.Close();
+            return resultado;
+        }
+        public int InsertarEmpleado(Empleado emp)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into Empleados(Cod_Empleado, Nombre, Telefono, Documento, calle, nro_Calle, id_barrio) values(&#x27;&quot; +emp.CodigoEmpleado + &quot;&#x27;, &#x27;&quot; + emp.Nombre + &quot;&#x27;, &#x27;&quot; + emp.telefono + &quot;&#x27;, &#x27;&quot; + emp.NroTipoDocumento + &quot;&#x27;, &#x27;&quot; + emp.calle + &quot;&#x27;, &#x27;&quot; + emp.NroCalle + &quot;&#x27;, &#x27;&quot; + emp.IdBarrio + &quot;&#x27;)&quot;;
+            
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+               
+            
+        }
+        public int  EliminarEmpleado(string cod)
+        {
+
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM Empleados WHERE Cod_Empleado = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+        public int ModificarEmpleado(Empleado emp)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE Empleados SET Nombre = &#x27;&quot; + emp.Nombre + &quot;&#x27;, Telefono = &#x27;&quot; + emp.telefono + &quot;&#x27;, Documento = &#x27;&quot; + emp.NroTipoDocumento + &quot;&#x27;, calle =  &#x27;&quot; + emp.calle + &quot;&#x27;, nro_calle =  &#x27;&quot; + emp.NroCalle + &quot;&#x27;, id_barrio = &#x27;&quot; + emp.IdBarrio + &quot;&#x27; WHERE Cod_Empleado = &#x27;&quot; + emp.CodigoEmpleado + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+       
+
+        public bool InsertarBarrio(Barrio ba)
+
+        {
+            bool resultado = false;
+
+            try
+            {
+                conexion.Open();
+                string query = &quot;insert into Barrios(id_barrio, nombre_barrio) values(&#x27;&quot; + ba.Id + &quot;&#x27;, &#x27;&quot; + ba.Nombre + &quot;&#x27;)&quot;;
+
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                cmd.ExecuteNonQuery();
+                
+                resultado= true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+            return resultado;
+        }
+
+        public int ModificarBarrio(Barrio ba)
+
+        {
+            int resultado = 0;
+            try
+            {
+                conexion.Open();
+                string query = &quot;UPDATE Barrios SET nombre_barrio = &#x27;&quot; + ba.Nombre + &quot;&#x27; where id_barrio = &#x27;&quot; + ba.Id + &quot;&#x27;&quot;;
+
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                resultado =cmd.ExecuteNonQuery();
+
+                return resultado;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            
+          
+
+
+        }
+        public int EliminarBarrio(string id)
+
+        {
+            int flag = 0;
+
+            try
+            {
+                conexion.Open();
+                string query = &quot;DELETE FROM Barrios WHERE id_barrio = &#x27;&quot; + id + &quot;&#x27;&quot;;
+
+                SqlCommand cmd = new SqlCommand(query, conexion);
+                flag = cmd.ExecuteNonQuery();
+                return flag;
+                 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+            
+           
+
+
+        }
+        // proveedores david
+        public DataTable ConsultarProveedoresDG()
+        {
+            string query = &quot;SELECT * FROM Proveedor&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+        }
+
+        public int InsertarProveedor(Proveedor pro)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into Proveedor(Cod_Proveedor, Nombre, Telefono, Mail, Calle, nro_Calle, id_barrio) values(&#x27;&quot; + pro.cod_proveedor + &quot;&#x27;, &#x27;&quot; + pro.Nombre + &quot;&#x27;, &#x27;&quot; + pro.telefono + &quot;&#x27;, &#x27;&quot; + pro.Mail + &quot;&#x27;, &#x27;&quot; + pro.calle + &quot;&#x27;, &#x27;&quot; + pro.NroCasa + &quot;&#x27;, &#x27;&quot; + pro.IdBarrio + &quot;&#x27;)&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+        }
+
+        public int ModificarProveedor(Proveedor pro)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE Proveedor SET Nombre = &#x27;&quot; + pro.Nombre + &quot;&#x27;, Telefono = &#x27;&quot; + pro.telefono + &quot;&#x27;, Mail = &#x27;&quot; + pro.Mail + &quot;&#x27;, Calle =  &#x27;&quot; + pro.calle + &quot;&#x27;, nro_calle =  &#x27;&quot; + pro.NroCasa + &quot;&#x27;, id_barrio = &#x27;&quot; + pro.IdBarrio + &quot;&#x27; WHERE Cod_Proveedor = &#x27;&quot; + pro.cod_proveedor + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+        public int EliminarProveedor(string cod)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM Proveedor WHERE Cod_Proveedor = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+        // Obra david
+        public static DataTable ConsultarObrasDG()
+        {
+            string query = &quot;SELECT * FROM Obras&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+        }
+
+        public int InsertarObra(Obra ob)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into Obras(codigo_obra, nombre_Obra, calle, nro_Calle, id_barrio) values(&#x27;&quot; + ob.Codigo_Obra + &quot;&#x27;,&#x27;&quot; + ob.NombreObra + &quot;&#x27;, &#x27;&quot; + ob.calle + &quot;&#x27;, &#x27;&quot; + ob.NroCalle + &quot;&#x27;, &#x27;&quot; + ob.IdBarrio + &quot;&#x27;)&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+        }
+
+        public int ModificarObra(Obra ob)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE Obras SET nombre_Obra = &#x27;&quot; + ob.NombreObra + &quot;&#x27;, Calle =  &#x27;&quot; + ob.calle + &quot;&#x27;, nro_calle =  &#x27;&quot; + ob.NroCalle + &quot;&#x27;, id_barrio = &#x27;&quot; + ob.IdBarrio + &quot;&#x27; WHERE codigo_Obra = &#x27;&quot; + ob.Codigo_Obra + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+        public int EliminarObra(string cod)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM Obras WHERE codigo_Obra = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+
+
+        public static DataTable ObtenerCamiones()
+        {
+            string query = &quot;SELECT * FROM Camiones&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+        }
+        public static DataTable ObtenerVentas()
+        {
+            string query = &quot;SELECT * FROM Ventas&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+        }
+
+        public int InsertarCamion(Camion cam)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into Camiones(Patente, Marca_Camión, Año_Modelo, Capacidad ) values(&#x27;&quot; + cam.patente + &quot;&#x27;, &#x27;&quot; + cam.Marca + &quot;&#x27;, &#x27;&quot; + cam.Anio_modelo + &quot;&#x27;, &#x27;&quot; + cam.Capacidad + &quot;&#x27;)&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+        public int eliminarCamion(string patente)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM Camiones WHERE Patente = &#x27;&quot; + patente + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+        public Camion obtenerCamion(string patente)
+        {
+            Camion resultado = new Camion();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Camiones WHERE Patente = &#x27;&quot; + patente + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if(reader!= null &amp;&amp; reader.Read())
+            {
+                resultado.patente = reader[&quot;Patente&quot;].ToString();
+                resultado.Marca = reader[&quot;Marca_Camión&quot;].ToString();
+                resultado.Anio_modelo = int.Parse(reader[&quot;Año_Modelo&quot;].ToString());
+                resultado.Capacidad = int.Parse(reader[&quot;Capacidad&quot;].ToString());
+
+            }
+            conexion.Close();
+            return resultado;
+
+
+        }
+
+        public int ModificarCamion(Camion cam)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE Camiones SET Marca_Camión = &#x27;&quot; + cam.Marca + &quot;&#x27;, Año_Modelo =  &#x27;&quot; + cam.Anio_modelo + &quot;&#x27;, Capacidad =  &#x27;&quot; + cam.Capacidad + &quot;&#x27; WHERE Patente = &#x27;&quot; + cam.patente + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+
+        
+        public static DataTable ConsultarMaterialesDG()
+        {
+            string query = &quot;SELECT * FROM Materiales&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+        }
+        public int InsertarMaterial(Material ma)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;insert into Materiales(Codigo_Material, Cantidad, Cod_Unidad_Medida, Cod_Proveedor, Fecha_Ingreso, precio) values(&#x27;&quot; + ma.codigo_material + &quot;&#x27;,&#x27;&quot; + ma.cantidad + &quot;&#x27;, &#x27;&quot; + ma.cod_unidad_medida + &quot;&#x27;, &#x27;&quot; + ma.cod_proveedor + &quot;&#x27;, &#x27;&quot; + ma.fecha_ingreso + &quot;&#x27;, &#x27;&quot; + ma.precio + &quot;&#x27;)&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+        }
+        public int ModificarMaterial(Material ma)
+
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;UPDATE Materiales SET Cantidad = &#x27;&quot; + ma.cantidad + &quot;&#x27;, Cod_Unidad_Medida =  &#x27;&quot; + ma.cod_unidad_medida + &quot;&#x27;, Cod_Proveedor =  &#x27;&quot; + ma.cod_proveedor + &quot;&#x27;, Fecha_Ingreso = &#x27;&quot; + ma.fecha_ingreso + &quot;&#x27;, precio = &#x27;&quot;+ ma.precio + &quot;&#x27; WHERE Codigo_Material = &#x27;&quot; + ma.codigo_material + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+
+
+        }
+        public int eliminarMaterial(string Material)
+        {
+            int flag = 0;
+            conexion.Open();
+            string query = &quot;DELETE FROM Materiales WHERE Codigo_Material = &#x27;&quot; + Material + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            flag = cmd.ExecuteNonQuery();
+            conexion.Close();
+            return flag;
+        }
+        public Material obtenerMAterial(int cod)
+        {
+            Material resultado = new Material();
+            conexion.Open();
+            string query = &quot;SELECT * FROM Materiales WHERE Codigo_Material = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader != null &amp;&amp; reader.Read())
+            {
+                resultado.codigo_material = int.Parse(reader[&quot;Codigo_Material&quot;].ToString());
+                resultado.cantidad = int.Parse(reader[&quot;Cantidad&quot;].ToString());
+                resultado.cod_unidad_medida = int.Parse(reader[&quot;Cod_Unidad_Medida&quot;].ToString());
+                resultado.cod_proveedor = int.Parse(reader[&quot;Cod_Proveedor&quot;].ToString());
+                resultado.fecha_ingreso = DateTime.Parse(reader[&quot;Fecha_Ingreso&quot;].ToString());
+                resultado.precio = float.Parse(reader[&quot;precio&quot;].ToString());
+
+            }
+            conexion.Close();
+            return resultado;
+        }
+
+        public static DataTable ObtenerEmpleadoXcod(int cod)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Empleados WHERE Cod_Empleado = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
+        public static DataTable ObtenerEmpleadoXnom(string nom)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Empleados WHERE Nombre = &#x27;&quot; + nom + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
+        public static DataTable ObtenerMaterialxCod(int cod)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Materiales WHERE Codigo_Material = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+                
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerVentaxNum(int Num)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Ventas WHERE numero_venta = &#x27;&quot; + Num + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerVentaxCamion(string patente)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Ventas WHERE patente_camion = &#x27;&quot; + patente + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerVentaxObra(int Num)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Ventas WHERE codigo_obra = &#x27;&quot; + Num + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static int obtenerUltimoIDVenta()
+        {
+            try
+            {   
+                SqlCommand cmd = new SqlCommand();
+                string consulta = &quot;SELECT MAX(numero_venta) FROM Ventas&quot;;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection=conexion;
+
+                int resultado = (int)cmd.ExecuteScalar();
+                return resultado;
+
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ConsultarHerramientas()
+        {
+            string query = &quot;SELECT * FROM Herramientas&quot;;
+            SqlCommand cmd = new SqlCommand(query, conexion);
+            SqlDataAdapter data = new SqlDataAdapter(cmd);
+            DataTable tabla = new DataTable();
+            data.Fill(tabla);
+
+            return tabla;
+        }
+        public static DataTable ObtenerHerramientaxCod(int cod)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Herramientas WHERE Cod_herramienta = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerMaterialesxProv(int cod)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Materiales WHERE Cod_Proveedor = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerHerramientasxVenta()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select v.numero_venta,COUNT(de.cod_herramienta) as Cantidad FROM DETALLExENTREGAxALQUILER de Inner join Ventas v On de.numero_venta = v.numero_venta Group by v.numero_venta&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerEmpleadosXbarrio()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select v.nombre_barrio,COUNT(de.id_barrio) as Cantidad FROM Empleados de Inner join Barrios v On de.id_barrio = v.id_barrio Group by v.nombre_barrio&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerProveedoresXbarrio()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select v.nombre_barrio,COUNT(de.id_barrio) as Cantidad FROM Proveedor de Inner join Barrios v On de.id_barrio = v.id_barrio Group by v.nombre_barrio&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerBarrioXnombre(string nom)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select * FROM Barrios WHERE nombre_barrio =&#x27;&quot; + nom + &quot;&#x27;&quot;; 
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerBarrioXCod(int id)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select * FROM Barrios WHERE id_barrio = &#x27;&quot; + id + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerVentasxCamion()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select v.patente_camion as Camion,COUNT(*) as Cantidad_ventas FROM Ventas v Group by v.patente_camion&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        
+
+        public static bool RegistrarVenta(Venta venta, List&lt;Objeto_de_Venta&gt; listaMateriales, List&lt;Objeto_de_Venta&gt; listaHerramienta)
+        {
+            SqlTransaction objetoTransaccion = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;INSERT INTO Ventas VALUES(@num,@feVen,@patente,@atraso,@monto,@codObra,@feEntrega)&quot;;
+
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue(&quot;@num&quot;, venta.numero);
+                cmd.Parameters.AddWithValue(&quot;@feVen&quot;,venta.fecha);
+                cmd.Parameters.AddWithValue(&quot;@patente&quot;,venta.patente);
+                cmd.Parameters.AddWithValue(&quot;@atraso&quot;,venta.atraso);
+                cmd.Parameters.AddWithValue(&quot;@monto&quot;,venta.monto);
+                cmd.Parameters.AddWithValue(&quot;@codObra&quot;,venta.codObra);
+                cmd.Parameters.AddWithValue(&quot;@feEntrega&quot;,venta.fechaEntrega);
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                
+                objetoTransaccion=conexion.BeginTransaction(&quot;RegistroVenta&quot;);
+
+                cmd.Transaction=objetoTransaccion;
+
+                cmd.Connection = conexion;
+                cmd.ExecuteNonQuery();
+
+                foreach(var Objeto_de_Venta in listaHerramienta)
+                {
+                    string consultaEntregaXAlquiler = &quot;INSERT INTO DETALLExENTREGAxALQUILER VALUES(@numven,@codHerra,@fechaDev,@respon,@precio)&quot;;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue(&quot;@numven&quot;, venta.numero);
+                    cmd.Parameters.AddWithValue(&quot;@codHerra&quot;,Objeto_de_Venta.cod);
+                    cmd.Parameters.AddWithValue(&quot;@fechaDev&quot;,Objeto_de_Venta.fecha);
+                    cmd.Parameters.AddWithValue(&quot;@respon&quot;,Objeto_de_Venta.responsable);
+                    cmd.Parameters.AddWithValue(&quot;@precio&quot;,Objeto_de_Venta.precio);
+                    cmd.CommandText=consultaEntregaXAlquiler;
+                    cmd.ExecuteNonQuery();
+                }
+                foreach(var Objeto_de_Venta in listaMateriales)
+                {
+                    string consultaEntregaXMaterial = &quot;INSERT INTO ENTREGAxMATERIAL VALUES(@numven,@codMat,@cant,@precio)&quot;;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue(&quot;@numven&quot;, venta.numero);
+                    cmd.Parameters.AddWithValue(&quot;@codMat&quot;, Objeto_de_Venta.cod);
+                    cmd.Parameters.AddWithValue(&quot;@cant&quot;, Objeto_de_Venta.cantidad);
+                    cmd.Parameters.AddWithValue(&quot;@precio&quot;, Objeto_de_Venta.precio);
+                    cmd.CommandText = consultaEntregaXMaterial;
+                    cmd.ExecuteNonQuery();
+                }
+                objetoTransaccion.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                objetoTransaccion.Rollback();
+                return false;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public static DataTable ObtenerObraxCod(int cod)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Obras WHERE codigo_obra = &#x27;&quot; + cod + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public static DataTable ObtenerObraxIdBarrio(int id)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Obras WHERE id_barrio = &#x27;&quot; + id + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public static DataTable ObtenerEstadisticasObrasXbarrio()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select v.nombre_barrio,COUNT(de.id_barrio) as Cantidad FROM obras de Inner join Barrios v On de.id_barrio = v.id_barrio Group by v.nombre_barrio&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
+        public static DataTable ObtenerCamionesXPatente(string pat)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Camiones WHERE Patente = &#x27;&quot; + pat + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public static DataTable ObtenerCamionesXMarca(string marca)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;SELECT * FROM Camiones WHERE Marca_Camión = &#x27;&quot; + marca + &quot;&#x27;&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public static DataTable ObtenerEstadisticasCamionesXMarca()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string consulta = &quot;Select v.Marca_Camión,COUNT(de.Patente) as Cantidad FROM [BD3K3G11_2022].[dbo].[Camiones] de Inner join Camiones v On de.Patente = v.Patente Group by v.Marca_Camión\r\n&quot;;
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                conexion.Open();
+                cmd.Connection = conexion;
+
+                DataTable tabla = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+    }
+
+}</code></pre></div></article></body></html>
